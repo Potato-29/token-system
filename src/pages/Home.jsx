@@ -25,7 +25,6 @@ const Home = () => {
       console.error("something went wrong");
     }
   };
-
   return (
     <div className="p-3">
       <form onSubmit={handleSubmit(onSubmit)}>
