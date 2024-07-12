@@ -6,8 +6,12 @@ import Button from "../components/Button/Button";
 import SelectInput from "../components/SelectInput/SelectInput";
 import Checkbox from "../components/Checkbox/Checkbox";
 import { createToken } from "../services/tokenServices";
+import { toast } from "react-toastify";
+import { toastOptions } from "../constants/toastOptions";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     formState: { errors },
@@ -19,10 +23,12 @@ const Home = () => {
     try {
       const response = await createToken(body);
       if (response) {
-        console.log(response);
+        toast.success("Token generated successfully", toastOptions);
+        navigate(`/status/${response.data._id}`);
       }
     } catch (error) {
       console.error("something went wrong");
+      toast.error("Something went wrong!", toastOptions);
     }
   };
   return (

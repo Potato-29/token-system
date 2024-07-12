@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -5,7 +7,8 @@ import Navbar from "./components/Navbar/Navbar";
 function App({ children }) {
   return (
     <div className="h-screen">
-      <Navbar />
+      <ToastContainer />
+      {/* <Navbar /> */}
       {children}
     </div>
   );
