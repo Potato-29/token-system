@@ -1,7 +1,13 @@
 import React from "react";
 import { tokenStatuses } from "../../constants/tokenStatus";
+import { IoPerson } from "react-icons/io5";
 
-const StatusHero = ({ tokenNumber = 0, status, statusMessage }) => {
+const StatusHero = ({
+  tokenNumber = 0,
+  status,
+  statusMessage,
+  queueLength,
+}) => {
   const getBgColor = () => {
     if (status === tokenStatuses.PENDING) {
       return "bg-gradient-to-r from-yellow-400 to-orange-400";
@@ -28,14 +34,15 @@ const StatusHero = ({ tokenNumber = 0, status, statusMessage }) => {
       className={`py-2 h-[45%] flex flex-col items-center justify-between ${getBgColor()} text-neutral-content`}
     >
       <div>
-        <p className="text-xs">Token Number</p>
+        <p className="text-xs capitalize font-semibold">{status}</p>
       </div>
       <div className="flex flex-col justify-center items-center">
         <h3 className="text-5xl font-bold">{tokenNumber}</h3>
         {/* <p className="text-xs">{status}</p> */}
       </div>
-      <div>
-        <p className="text-sm">{statusMessage}</p>
+      <div className="flex flex-row items-center animate-pulse">
+        <IoPerson className="mx-1" />
+        <p className="text-sm">{queueLength} waiting in line.</p>
       </div>
     </div>
   );

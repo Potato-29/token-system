@@ -6,9 +6,11 @@ const Button = ({
   className = "",
   isDisabled,
   bgColor,
+  onClick = () => {},
 }) => {
   return (
     <button
+      onClick={onClick}
       className={`btn btn-${btnType} bg-${bgColor} ${className}`}
       disabled={isDisabled}
     >

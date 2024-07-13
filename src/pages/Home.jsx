@@ -57,7 +57,7 @@ const Home = () => {
           name="isWhatsApp"
           text={"Get Updates on WhatsApp?"}
         />
-        <Button text={"Submit"} btnType="success" />
+        <Button className="bg-success" text={"Submit"} btnType="success" />
       </form>
     </div>
   );
