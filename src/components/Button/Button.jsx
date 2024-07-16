@@ -7,12 +7,14 @@ const Button = ({
   isDisabled,
   bgColor,
   onClick = () => {},
+  ...props
 }) => {
   return (
     <button
       onClick={onClick}
       className={`btn btn-${btnType} bg-${bgColor} ${className}`}
       disabled={isDisabled}
+      {...props}
     >
       {text}
     </button>

@@ -1,4 +1,8 @@
-import { createTokenUrl, getTokenStatusUrl } from "../constants/urls";
+import {
+  cancelTokenUrl,
+  createTokenUrl,
+  getTokenStatusUrl,
+} from "../constants/urls";
 import axios from "../utils/axios";
 
 export const createToken = async (body) => {
@@ -8,5 +12,10 @@ export const createToken = async (body) => {
 
 export const getTokenStatus = async (id) => {
   const { data } = await axios.get(`${getTokenStatusUrl}/${id}`);
+  return data;
+};
+
+export const cancelToken = async (id) => {
+  const { data } = await axios.get(`${cancelTokenUrl}/${id}`);
   return data;
 };

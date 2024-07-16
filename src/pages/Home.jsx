@@ -57,7 +57,11 @@ const Home = () => {
           name="isWhatsApp"
           text={"Get Updates on WhatsApp?"}
         />
-        <Button className="bg-success" text={"Submit"} btnType="success" />
+        <Button
+          className="bg-success text-white w-28"
+          text={"Submit"}
+          btnType="circle"
+        />
       </form>
     </div>
   );
