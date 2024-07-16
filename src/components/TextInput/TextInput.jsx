@@ -18,7 +18,7 @@ const TextInput = ({
         })}
         type={type}
         placeholder={placeholder}
-        className={`input input-bordered w-full max-w-xs my-1 ${
+        className={`input input-bordered w-full my-1 ${
           error?.[name] && "border-red-400"
         } ${className}`}
       />
