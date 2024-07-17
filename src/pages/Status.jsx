@@ -14,6 +14,7 @@ const Status = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isCancelLoading, setIsCancelLoading] = useState(true);
   const [tokenInfo, setTokenInfo] = useState([]);
+  const [tokenStatus, setTokenStatus] = useState();
   const [queueLength, setQueueLength] = useState(
     window.localStorage.getItem("queueLength") || 0
   );
@@ -70,14 +71,20 @@ const Status = () => {
       console.log("Received data:", jsonData);
     }
 
+    function handleTokenUpdate(jsonData) {
+      setTokenStatus(jsonData);
+    }
+
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
     socket.on("queue", handleQueueUpdate);
+    socket.on("tokenStatusChanged", handleTokenUpdate);
 
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
       socket.off("queue", handleQueueUpdate);
+      socket.off("tokenStatusChanged", handleTokenUpdate);
       socket.disconnect();
     };
   }, []);
@@ -87,8 +94,12 @@ const Status = () => {
       {isLoading && <Loader mode="backdrop" size="lg" />}
 
       <StatusHero
-        status={tokenInfo.status}
-        statusMessage={tokenInfo.statusMessage}
+        status={tokenStatus !== null ? tokenStatus?.status : tokenInfo.status}
+        statusMessage={
+          tokenStatus !== null
+            ? tokenStatus?.statusMessage
+            : tokenInfo.statusMessage
+        }
         tokenNumber={tokenInfo.number}
         queueLength={queueLength}
       />

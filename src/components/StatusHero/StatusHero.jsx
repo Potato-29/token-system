@@ -42,6 +42,14 @@ const StatusHero = ({
         </div>
       );
     }
+    if (status === tokenStatuses.ON_HOLD) {
+      return (
+        <div className="flex flex-row items-center animate-pulse">
+          <IoPerson className="mx-1" />
+          <p className="text-sm">{statusMessage}</p>
+        </div>
+      );
+    }
 
     if (status === tokenStatuses.RESOLVED) {
       return (
